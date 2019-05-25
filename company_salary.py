@@ -1,10 +1,9 @@
 import requests
 import time
-import pymysql
 from bs4 import BeautifulSoup
 
 all_language = ['C%2B%2B','Java','Python','R语言', 'Go', 'Matlab', 'Scala', 'VB.NET', 'SQL',
-                'Objective-C', 'C', 'Ruby', 'PHP', '汇编', 'C%23']
+                'Objective-C', 'C', 'Ruby', 'PHP', '汇编', 'C%23','Javascript']
 all_company = ['字节跳动', '阿里巴巴', '华为', '腾讯', '金山', '百度' ,'京东', '滴滴出行', '小米', '360'\
                 '美团', '网易', '拼多多', '携程', '新浪', '苏宁易购', '快手', '唯品会', '陆金所', '科大讯飞'\
                 '58', '汽车之家', '爱奇艺', '链家网', '哔哩哔哩', '斗鱼', '迅雷']

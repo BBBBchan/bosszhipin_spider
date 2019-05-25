@@ -121,4 +121,12 @@ if __name__ == '__main__':
 
     #输出爬取结果
     for i in range(len(job)):
+        if language[i] == 'R语言':
+             language[i] = 'R'
+        elif language[i] == '汇编':
+            language[i] = 'Assembly'
+        elif language[i] == 'C%2B%2B':
+            language[i] = 'C++'
+        elif language[i] == 'C%23':
+            language[i] = 'C#'
         print("语言:", language[i],", 职位: ",job[i],", 薪资: ",salary[i])
