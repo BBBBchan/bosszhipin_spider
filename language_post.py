@@ -1,9 +1,8 @@
 import requests
 import time
-import pymysql
 from bs4 import BeautifulSoup
 
-all_language = ['C%2B%2B','Java','Python','Javascript','Go','Scala','SQL','C','PHP']
+all_language = ['C%2B%2B','Java','Python','JavaScript','Go','Scala','SQL','C','PHP']
 other_language = ['R语言','Matlab','VB.NET','Objective-C','Ruby','汇编','C%23']
 class spider():
     def __init__(self):
@@ -38,9 +37,12 @@ class spider():
         i = 1
         while i < len(table_company):
             self.company.append(table_company[i].text)
-            self.job.append(table_job[int((i - 1) / 3)].text)
-            self.money.append(table_money[int((i - 1) / 3)].text)
-            i += 3
+            i += 2
+        i = 0
+        while i < len(table_job):
+            self.job.append(table_job[i].text)
+            self.money.append(table_money[i].text)
+            i+=1
 
     def renew(self):
         self.data = []
@@ -64,12 +66,13 @@ if __name__ == '__main__':
     job = []
     salary = []
     language = []
+    company = []
     for i in all_language:
         if i == 'C':
             spider.url = 'https://www.zhipin.com/c100010000/y_6-s_306-t_807/?query=C&page=1&ka=page-1'
         else:
             set_url(i)
-        print(spider.url)       #输出当前爬取页面的URL
+        print(spider.url)
         spider.get_it()
         time.sleep(5)
         count = 0
@@ -86,6 +89,8 @@ if __name__ == '__main__':
                 job.append(spider.job[j])
                 salary.append(spider.money[j])
                 language.append(i)
+                company.append(spider.company[j])
+                print(spider.job[j])
                 count += 1
             if count >= 6:
                 break
@@ -96,7 +101,7 @@ if __name__ == '__main__':
             spider.url = 'https://www.zhipin.com/c100010000/y_6/?query=C%23&page=1&ka=page-1'
         else:
             set_url(i)
-        print(spider.url)       #输出当前爬取页面的URL
+        print(spider.url)
         spider.get_it()
         time.sleep(5)
         count = 0
@@ -113,20 +118,20 @@ if __name__ == '__main__':
                 job.append(spider.job[j])
                 salary.append(spider.money[j])
                 language.append(i)
+                company.append(spider.company[j])
                 print(spider.job[j])
                 count += 1
             if count >= 6:
                 break
         spider.renew()
 
-    #输出爬取结果
     for i in range(len(job)):
         if language[i] == 'R语言':
-             language[i] = 'R'
+                language[i] = 'R'
         elif language[i] == '汇编':
-            language[i] = 'Assembly'
+                language[i] = 'Assembly'
         elif language[i] == 'C%2B%2B':
-            language[i] = 'C++'
+                language[i] = 'C++'
         elif language[i] == 'C%23':
-            language[i] = 'C#'
-        print("语言:", language[i],", 职位: ",job[i],", 薪资: ",salary[i])
+                language[i] = 'C#'
+        print('公司名: 'company[i],'语言名: ', language[i],'岗位名称: ', job[i],'薪资水平:', salary[i])
