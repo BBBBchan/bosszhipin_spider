@@ -2,7 +2,6 @@ import requests
 import time
 from bs4 import BeautifulSoup
 import random
-import pymysql
 
 all_language = ['C%2B%2B','Java','Python','R语言', 'Go', 'Matlab', 'Scala', 'VB.NET', 'SQL',
                 'Objective-C', 'C', 'Ruby', 'PHP', '汇编', 'C%23']
